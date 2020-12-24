@@ -4,8 +4,8 @@ let overSizedPackageDistribution = 0.1; // Количество негабари
 
 let packageDistribution = 0.4;
 
-const minuteMultiplier = 500;
-const secondMultiplier = minuteMultiplier / 60;
+let minuteMultiplier = 1000;
+let secondMultiplier = minuteMultiplier / 60;
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -415,6 +415,10 @@ document.body.appendChild(p);
 
 let sortingCenter = new SortingCenter;
 let view = new View;
+
+view.createInputSlider('Количество миллисекунд в минуте (от 1 до 5000)', 1, 5000, 1, 1000, 'ms', () => {
+    minuteMultiplier = parseFloat(document.getElementById('ms').value);
+});
 
 view.createInputSlider('Количество писем (от 1 до 500)', 1, 500, 1, 200, 'letters', () => {
     sortingCenter.numberOfLettersPerDay = parseFloat(document.getElementById('letters').value);
